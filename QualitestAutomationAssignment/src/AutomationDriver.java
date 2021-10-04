@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -20,19 +19,18 @@ public class AutomationDriver {
 	       WebDriver driver=new ChromeDriver();
 		   driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 		   
-	       AutomationDriver Ad=new AutomationDriver();
-	       //Ad.exerciseOne(driver);
-	      // Ad.exerciseTwo(driver);
-	      // Ad.exerciseThree(driver);
-	       //  Ad.exerciseFour(driver);
-	        // Ad.exerciseFive(driver);
-	         //Ad.exerciseSix(driver);
-	      // Ad.exerciseSeven(driver);
-	       Ad.exerciseEight(driver);
-	       Ad.exerciseNine(driver);
+	       AutomationDriver.exerciseOne(driver);
+	       AutomationDriver.exerciseTwo(driver);
+	       AutomationDriver.exerciseThree(driver);
+	       AutomationDriver.exerciseFour(driver);
+	       AutomationDriver.exerciseFive(driver);
+	       AutomationDriver.exerciseSix(driver);
+	       AutomationDriver.exerciseSeven(driver);
+	       AutomationDriver.exerciseEight(driver);
+	       AutomationDriver.exerciseNine(driver);
 	}
 	
-	public void exerciseOne(WebDriver driver) {
+	public static void exerciseOne(WebDriver driver) {
 	       
 		  // Code to Select the “Radio1” radio button and verify it’s selected.  
 	       driver.findElement(By.cssSelector("input[value='radio1']")).click();
@@ -45,10 +43,10 @@ public class AutomationDriver {
 		  // Code to Select the “Radio3” radio button and verify it’s selected.  
 	       driver.findElement(By.cssSelector("input[value='radio3']")).click();
 	       Assert.assertTrue(driver.findElement(By.cssSelector("input[value='radio3']")).isSelected());
-	       driver.close();
+	     //  driver.close();
 	}
 	
-	public void exerciseTwo(WebDriver driver) throws InterruptedException {
+	public static void exerciseTwo(WebDriver driver) throws InterruptedException {
 		
 		driver.findElement(By.id("autocomplete")).sendKeys("United states");
 		Thread.sleep(3000);
@@ -64,7 +62,8 @@ public class AutomationDriver {
 		}
 	}
 	
-	public void exerciseThree(WebDriver driver) throws InterruptedException {
+	
+	public static void exerciseThree(WebDriver driver) throws InterruptedException {
 		
 		driver.findElement(By.id("dropdown-class-example")).click();
 		driver.findElement(By.xpath("//option[@value='option1']")).click();
@@ -76,8 +75,9 @@ public class AutomationDriver {
 
 	}
 
-	public void exerciseFour(WebDriver driver) throws InterruptedException {
+	public static void exerciseFour(WebDriver driver) throws InterruptedException {
 	
+		
 		driver.findElement(By.name("checkBoxOption1")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.name("checkBoxOption1")).click();
@@ -87,13 +87,18 @@ public class AutomationDriver {
 		driver.findElement(By.name("checkBoxOption3")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.name("checkBoxOption3")).click();
+		
+		// Calling function exerciseFourPointOne
 		AutomationDriver.exerciseFourPointOne(driver);
+		
+		// Calling function exerciseFourPointTwo
 		AutomationDriver.exerciseFourPointTwo(driver);
 		
 	}
 	
 	public static void exerciseFourPointOne(WebDriver driver) throws InterruptedException {
 	
+		// Clicking on all check boxes and verifying them
 		driver.findElement(By.name("checkBoxOption1")).click();
 		driver.findElement(By.name("checkBoxOption2")).click();
 		driver.findElement(By.name("checkBoxOption3")).click();
@@ -116,9 +121,12 @@ public class AutomationDriver {
 		
 	}
 	
-	public void exerciseFive(WebDriver driver) throws InterruptedException {
+	public static void exerciseFive(WebDriver driver) throws InterruptedException {
 
+		// Implicit wait
 		 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		 
+		 // Maximizing window
 		 driver.manage().window().maximize();
 		 driver.get("http://www.qaclickacademy.com/practice.php");
 		 driver.findElement(By.cssSelector("button.btn-style.class1")).click();
@@ -127,10 +135,12 @@ public class AutomationDriver {
 		 Iterator<String> a = Windows.iterator();
 		 String parentid = a.next();
 		 Thread.sleep(7000);
+		 
+		 //Switching to parent id
 		 driver.switchTo().window(parentid);
 		 }
 	
-	public void exerciseSix(WebDriver driver) throws InterruptedException {
+	public static void exerciseSix(WebDriver driver) throws InterruptedException {
 
 		 driver.findElement(By.cssSelector("a.btn-style.class1.class2")).click();
 		 Thread.sleep(2000);
@@ -140,33 +150,47 @@ public class AutomationDriver {
 		 String parent = b.next();
 		 String daughter = b.next();
 		 Thread.sleep(2000);
+		 
+		 //Switching to daughter window 
 		 driver.switchTo().window(daughter);
+		 
+		 // Closing daughter window
 		 driver.close();
+		 
+		 //Switching back to parent window
 		 driver.switchTo().window(parent);
 		 
 		}
 
 
-	 public void exerciseSeven(WebDriver driver) throws InterruptedException {
+	 public static void exerciseSeven(WebDriver driver) throws InterruptedException {
 		 
+		 //Entering My name in the input field
 		driver.findElement(By.cssSelector("input#name")).sendKeys("Sarvesh");
-		Thread.sleep(2000);
+		Thread.sleep(5000);
+		
+		// Initiating alert window
 		driver.findElement(By.cssSelector("input#alertbtn")).click();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
+		
+		//Accepting the alert 
 		driver.switchTo().alert().accept();
 
 		 }
 	 
-	 public void exerciseEight(WebDriver driver) throws InterruptedException {
+	 
+	 public static void exerciseEight(WebDriver driver) throws InterruptedException {
 		 
+		 //Type casting driver to JavascriptExecutor
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 driver.manage().window().maximize();
 		 js.executeScript("window.scrollBy(0,600)");
 		 Thread.sleep(2000);
-	//	 WebElement table = driver.findElement(By.xpath("//*[@id='product']"));
-	//	 System.out.println(table.findElements(By.tagName("tr")).size());
-	//	 System.out.println(table.findElements(By.tagName("tr")).get(0).findElements(By.tagName("th")).size());
-
+	    
+		 js.executeScript("document.querySelector('.tableFixHead').scrollBy(0,5000)");
+		 List<WebElement> tab= driver.findElements(By.xpath("//*[@class='table-display']"));
+		 for(int i=0;i<tab.size();i++) 
+		 System.out.println(tab.get(i).getText());
 
 
 		 
@@ -174,11 +198,16 @@ public class AutomationDriver {
 		 }
 	 
 	 private static void exerciseNine(WebDriver driver) throws InterruptedException {
+		 
+		 // Using Actions to perform Mouse Hover
 		 Actions a = new Actions(driver);
-		 Thread.sleep(3000);
+
+		 // Scrolling down where Mouse Hover button is present
 		 a.moveToElement(driver.findElement(By.xpath("//button[@id='mousehover']"))).click().build().perform();
 		 Thread.sleep(5000);
-		 a.moveToElement(driver.findElement(By.cssSelector("a[href='#top']"))).click().build().perform();
+		 
+		 // Clicking Top to Navigate to the top of the page
+		 a.moveToElement(driver.findElement(By.linkText("Top"))).click().build().perform();
 
 		  }
 	 
